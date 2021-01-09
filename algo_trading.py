@@ -27,6 +27,7 @@ plt.plot(SMA20[-300:], label='SMA20')
 plt.plot(SMA50[-300:], label='SMA50')
 plt.plot(SMA100[-300:], label='SMA100')
 plt.legend(loc='upper left', fontsize=15)
+plt.show()
 
 def get_points_above(sma_low, sma_high):
     points_above = {}
