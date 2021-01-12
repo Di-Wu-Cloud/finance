@@ -5,7 +5,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import yfinance as yf
-from Layout import *
 from get_all_tickers import get_tickers as gt
 from plotly.tools import mpl_to_plotly
 import matplotlib.pyplot as plt
@@ -21,8 +20,8 @@ df = df[-600:]
 
 ##### Dashboard layout #####
 # Dash Set up
-app = dash.Dash(__name__)
-
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 #algo calcs
 def get_points_above(sma_low, sma_high):
     points_above = {}
