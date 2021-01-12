@@ -1,7 +1,7 @@
 dash==1.13.3
 pandas==1.0.5
 gunicorn==20.0.4
-matplotlib.pyplot
-plotly.graph_objs
-numpy
-yfinance
+matplotlib.pyplot==3.3.3
+plotly.graph_objs==4.4.1
+numpy==1.19.0
+yfinance==0.1.55
