@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objs as go
 import plotly.tools as tls
+import dash_table
 
 #from pandas_datareader import data as pdr
 
@@ -74,7 +75,7 @@ for i in range(len(crossovers['SMA20'])):
     else:
         crossovers['Signal'][i] = 'Sell'
 #print(crossovers)
-
+crossovers = crossovers.drop(['0','Binary_Signal'], axis=1)
 # taking last 600 trading days
 
 SMA20 = df['Close'].rolling(window=20).mean()
@@ -117,6 +118,34 @@ app.layout = html.Div(
                     ),
                     className="card",
                 ),
+            ],
+            style={'marginBottom': '7em'},
+            className="header",
+        ),
+        html.Div(
+            children=[
+                html.Div([
+                    dash_table.DataTable(
+                        id='datatable-interactivity',
+                        columns=[
+                            {"name": i, "id": i, "selectable": True} for i in crossovers.columns
+                        ],
+                        data=crossovers.to_dict('records'),
+                        editable=True,
+                        filter_action="native",
+                        sort_action="native",
+                        sort_mode="multi",
+                        column_selectable="single",
+                        row_selectable="multi",
+                        row_deletable=True,
+                        selected_columns=[],
+                        selected_rows=[],
+                        page_action="native",
+                        page_current= 0,
+                        page_size= 10,
+                    ),
+                    html.Div(id='datatable-interactivity-container')
+                ])
             ],
             className="header",
         ),
