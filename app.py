@@ -5,7 +5,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import yfinance as yf
-from get_all_tickers import get_tickers as gt
 from plotly.tools import mpl_to_plotly
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,10 +17,18 @@ spy_ticker = yf.Ticker('SPY')
 df = yf.download('SPY')
 df = df[-600:]
 
+external_stylesheets = [
+    {
+        "href": "https://fonts.googleapis.com/css2?"
+        "family=Lato:wght@400;700&display=swap",
+        "rel": "stylesheet",
+    },
+]
 ##### Dashboard layout #####
 # Dash Set up
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
+app.title = "Stock Analytics Test!"
 #algo calcs
 def get_points_above(sma_low, sma_high):
     points_above = {}
