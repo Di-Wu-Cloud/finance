@@ -2,6 +2,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from pandas_datareader import data as pdr
 
 spy_ticker = yf.Ticker('SPY')
 spy = yf.download('SPY')
@@ -69,7 +70,7 @@ for i in range(len(crossovers['SMA20'])):
         crossovers['Signal'][i] = 'Sell'
 print(crossovers)
 
-# taking last 600 trading days
+# taking last 100 trading days
 SMA20 = spy['Close'].rolling(window=20).mean()
 SMA50 = spy['Close'].rolling(window=50).mean()
 plt.figure(figsize=(17, 8))
@@ -83,3 +84,4 @@ plt.plot(crossovers.loc[crossovers.Signal == 'Sell']['Dates'][-4:],
          crossovers['SMA20'][crossovers.Signal == 'Sell'][-4:],
         'v', markersize=15, color='r', label='Sell')
 plt.legend(loc='upper left', fontsize=15)
+plt.show()
