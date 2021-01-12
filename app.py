@@ -20,7 +20,7 @@ df = df[-600:]
 
 ##### Dashboard layout #####
 # Dash Set up
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__)
 server = app.server
 #algo calcs
 def get_points_above(sma_low, sma_high):
